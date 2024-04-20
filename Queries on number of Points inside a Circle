@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> countPoints(vector<vector<int>>& points, vector<vector<int>>& queries) {
+        vector<int> ans;
+
+        for(int i = 0; i < queries.size(); i++) {
+            int count = 0;
+            for(int j = 0; j < points.size(); j++) {
+                // Calculate the squared distance
+                int squared_distance = pow((points[j][0] - queries[i][0]), 2) + 
+                                       pow((points[j][1] - queries[i][1]), 2);
+                // Check if the squared distance is within the radius squared
+                if (squared_distance <= pow(queries[i][2], 2))
+                    count++;
+            }
+            ans.push_back(count); // Push the count for the current query
+        }
+
+        return ans;
+    }
+};
