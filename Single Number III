@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        int n = nums.size();
+        long xorval = 0;
+
+        for(int i=0; i<n; i++){
+            xorval ^= nums[i];
+        }
+
+        int masked = xorval & (-xorval);
+        int first = 0, second = 0;
+
+        for(int i=0; i<n; i++){
+            if(masked & nums[i]){
+                first ^= nums[i];
+            }
+            else{
+                second ^= nums[i];
+            }
+        }
+
+        return {first,second};
+    }
+};
